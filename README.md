@@ -8,5 +8,5 @@ Fortan Basics: Primeira tentativa efetiva de escrever códigos em linguagem Fort
 Fortran Basics tem somente um criador/autor/Author. E utiliza compilador gfortran.
 
 Alguns exercícios podem ser encontrados em https://sites.google.com/site/deoliveiralf/disciplinas/fisica-computacional
-
-
+Dicas de compilação em
+http://www.pbx-brasil.com/Pesquisa/Ferramentas/ProgramandoFortran/aula103/aula3.html
