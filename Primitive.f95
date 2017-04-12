@@ -2,7 +2,7 @@ program calculos                                                                
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!Definindo o tipo de variávis!!!!!!!!!!!!!!!!!!!!!!!!
 implicit none                                                                   !Não especifica nenhum tipo de variável
 complex k                                                                       !Diz que k é uma variável complexa
-integer n, m, raio                                                              !Diz que n, m, raio, E e D são variáveis inteiras
+integer n, m, raio, ia, ic, a(5,5)                                                             !Diz que n, m, raio, E e D são variáveis inteiras
 real pi, r, area, E, D, x, y                                                    !Diz que pi, x, y, r, area são uma variáveis reais
 !!!!!!!!!!!!!Atribuindo valores a variáveis e definindo parâmetros!!!!!!!!!!!!!!
 parameter(raio=3)                                                               !Define um nome simbólico para uma constante e não pode ser modificado
@@ -30,14 +30,28 @@ m=0                                                                             
 !write (*,*) 'sen(x)=', y
 
 
-write (*,*) 'm='
-read (*,*) m
-if(m .ne. 0)then                                                                !If expandido
-  k=m+n
-  print*,'k=m+n=',k
-elseif (m .eq. 0)then
-  k=(m+n)**2
-  print*, 'k=(m+n)²=',k
-endif
+!write (*,*) 'm='
+!read (*,*) m
+!if(m .ne. 0)then                                                                !If expandido. Expressão condicional.
+!  k=m+n
+!  print*,'k=m+n=',k
+!elseif (m .eq. 0)then
+!  k=(m+n)**2
+!  print*, 'k=(m+n)²=',k
+!endif
+
+ia=0                                                                            !Cria um Laço Simples para a soma de números inteiros de 1 a 100.
+do ic = 1, 2345000, 1
+  ia=ia+ic
+end do
+write(*,*),'Somatório', ia
+
+
+open(unit=10, file="Treinamento.txt")                                           !Gera um arquivo txt de saída de dados chamado Treinamento
+write(10,*)'ia'
+write(10,*) ia
+200 format(i3)
+close(10)
+
 
 end program calculos                                                            !Termina o programa
