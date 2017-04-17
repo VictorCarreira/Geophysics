@@ -2,8 +2,8 @@ program calculus                                                                
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!Definindo o tipo de variávis!!!!!!!!!!!!!!!!!!!!!!!!
 implicit none                                                                   !Não especifica nenhum tipo de variável
 complex k                                                                       !Diz que k é uma variável complexa
-integer n, m, raio, ia, ic, a(5,5), i, j, dia                                   !Diz quais são as variáveis inteiras
-real pi, r, area, E, D, x, y, radseg, fatseg, nivrad, radmin                    !Diz quais são variáveis reais
+integer n, m, raio, ia, ic, a(5,5), i, j, dia                                  !Diz quais são as variáveis inteiras
+real pi, r, area, E, D, x, y, radseg, fatseg, nivrad, radmin, final, inicial, DT!Diz quais são variáveis reais
 !!!!!!!!!!!!!Atribuindo valores a variáveis e definindo parâmetros!!!!!!!!!!!!!!
 parameter(raio=3)                                                               !Define um nome simbólico para uma constante e não pode ser modificado
 parameter(pi=3.14159)
@@ -86,6 +86,7 @@ dia=0
 !close(unit=0,status='keep')
 
 !!!!!!!!!!!!!Exemplo 10 INPE
+call cpu_time(inicial)
 print*, 'Entre com o nível de radiação do dia'                                  !Este programa calcula o nivel de radiação e o grau de segurança!
 read*, nivrad                                                                   !o programa utiliza o comando do while, que é utilizado para
 print*,'número de dias de radiação'                                             !executar um bloco repetidas vezes enquanto a condição for
@@ -103,9 +104,13 @@ dia=dia+3
 nivrad=nivrad/2.0
 end do
 
+call cpu_time(final)
+DT=final-inicial
+print '("Tempo = ",f6.3," segundos.")',DT
+
 open(unit=1, file='radiation level')
 write(1,*)'número de dias de radiação'
-write(1,*)dia, nivrad, radmin, radseg, fatseg
+write(1,*)dia, nivrad, radmin, radseg, fatseg, DT
 200 format(i3)
 close(unit=1, status='keep')
 
