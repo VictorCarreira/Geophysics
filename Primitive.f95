@@ -1,16 +1,17 @@
 program calculus                                                                !inicia o programa calculus
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!Definindo o tipo de variávis!!!!!!!!!!!!!!!!!!!!!!!!
 implicit none                                                                   !Não especifica nenhum tipo de variável
-complex k                                                                       !Diz que k é uma variável complexa
-integer n, m, raio, ia, ic, a(5,5), i, j, dia                                  !Diz quais são as variáveis inteiras
-real pi, r, area, E, D, x, y, radseg, fatseg, nivrad, radmin, final, inicial, DT!Diz quais são variáveis reais
+!complex k                                                                       !Diz que k é uma variável complexa
+!integer n, m, raio, ia, ic, a(5,5), i, j, dia                                  !Diz quais são as variáveis inteiras
+!real pi, r, area, E, D, x, y, radseg, fatseg, nivrad, radmin, final, inicial, DT!Diz quais são variáveis reais
+
 !!!!!!!!!!!!!Atribuindo valores a variáveis e definindo parâmetros!!!!!!!!!!!!!!
-parameter(raio=3)                                                               !Define um nome simbólico para uma constante e não pode ser modificado
-parameter(pi=3.14159)
-parameter(m=7)
-parameter(n=3)                                                                  !Atribui o valor 3 a variável m
-parameter (radseg=0.466, fatseg=10.0)                                           !Atribui o valor às variáveis radseg e fatseg
-dia=0
+!parameter(raio=3)                                                               !Define um nome simbólico para uma constante e não pode ser modificado
+!parameter(pi=3.14159)
+!parameter(m=7)
+!parameter(n=3)                                                                  !Atribui o valor 3 a variável m
+!parameter (radseg=0.466, fatseg=10.0)                                           !Atribui o valor às variáveis radseg e fatseg
+!dia=0
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Criando funções!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!Exemplo 1 INPE
@@ -86,32 +87,41 @@ dia=0
 !close(unit=0,status='keep')
 
 !!!!!!!!!!!!!Exemplo 10 INPE
-call cpu_time(inicial)
-print*, 'Entre com o nível de radiação do dia'                                  !Este programa calcula o nivel de radiação e o grau de segurança!
-read*, nivrad                                                                   !o programa utiliza o comando do while, que é utilizado para
-print*,'número de dias de radiação'                                             !executar um bloco repetidas vezes enquanto a condição for
-radmin=radseg/fatseg                                                            !verdadeira. A partir do momento em que a condicao passa a ser
+!call cpu_time(inicial)
+!print*, 'Entre com o nível de radiação do dia'                                  !Este programa calcula o nivel de radiação e o grau de segurança!
+!read*, nivrad                                                                   !o programa utiliza o comando do while, que é utilizado para
+!print*,'número de dias de radiação'                                             !executar um bloco repetidas vezes enquanto a condição for
+!radmin=radseg/fatseg                                                            !verdadeira. A partir do momento em que a condicao passa a ser
                                                                                 !falsa, este sai do loop continuando a execucao do restante do
                                                                                 !programa.
 
-do while (nivrad .gt. radmin)                                                   !Executa as instruções dentro do laço até que a condição seja satisfeita
-  if (nivrad .gt. radseg) then
-    print*, dia, nivrad, 'inseguro'
-  else
-    print*, dia, nivrad, 'seguro'
-  end if
-dia=dia+3
-nivrad=nivrad/2.0
+!do while (nivrad .gt. radmin)                                                   !Executa as instruções dentro do laço até que a condição seja satisfeita
+!  if (nivrad .gt. radseg) then
+!    print*, dia, nivrad, 'inseguro'
+!  else
+!    print*, dia, nivrad, 'seguro'
+!  end if
+!dia=dia+3
+!nivrad=nivrad/2.0
+!end do
+
+!call cpu_time(final)
+!DT=final-inicial
+!print '("Tempo = ",f6.3," segundos.")',DT
+
+!open(unit=1, file='radiation level')
+!write(1,*)'número de dias de radiação'
+!write(1,*)dia, nivrad, radmin, radseg, fatseg, DT
+!200 format(i3)
+!close(unit=1, status='keep')
+
+!!!!!!!!!!!!!!!!!!!!!!!!EXEMPLO 11 ORENGO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                                                                                !Essa seção mostra como trabalhar com vetores ou arrays em fortran.
+real, dimension(5):: B                                                    !Declara uma variável composta unidimensional (vetor) A de dimensão 10.
+                                                                               !E cujo os elementos são preenhidos todos pelo valor 1
+do i=1,5
+  read(*,*)B(i)
 end do
-
-call cpu_time(final)
-DT=final-inicial
-print '("Tempo = ",f6.3," segundos.")',DT
-
-open(unit=1, file='radiation level')
-write(1,*)'número de dias de radiação'
-write(1,*)dia, nivrad, radmin, radseg, fatseg, DT
-200 format(i3)
-close(unit=1, status='keep')
+print*,B
 
 end program calculus                                                            !Termina o programa calculus
