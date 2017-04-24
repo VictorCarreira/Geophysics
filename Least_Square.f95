@@ -9,7 +9,11 @@ PROGRAM MatricialProduct
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!Funções Intrínsecas!!!!!!!!!!
 call cpu_time(inicial)
-!E = MATMUL(A,B)                                                                !Função de multiplicação matricial. Só é válido para matrizes conformes.
+
+OPEN(UNIT=9,FILE='A.TXT', STATUS='OLD')
+OPEN(UNIT=10,FILE='B.TXT', STATUS='OLD')
+
+E = MATMUL(A,B)                                                                !Função de multiplicação matricial. Só é válido para matrizes conformes.
 
 
 !!!!!!!!!Produto Matricial!!!!!!!!!!!!
@@ -25,21 +29,21 @@ call cpu_time(inicial)
 
 
 
-DO i=1,m
-  DO j=1,m
-      C(i,j)=0
-    DO k=1,n
-      C(i,j)=C(i,j)+A(i,k)*B(k,j)
-    ENDDO
-  ENDDO
-ENDDO
+!DO i=1,m
+!  DO j=1,m
+!      C(i,j)=0
+!    DO k=1,n
+!      C(i,j)=C(i,j)+A(i,k)*B(k,j)
+!    ENDDO
+!  ENDDO
+!ENDDO
 
 !!!!!Gerando o arquivo de saída!!!!!!
 OPEN(unit=1, file='Produto Matricial')
 WRITE(1,*)'A->',A
 WRITE(1,*)'B->',B
-WRITE(1,*)'A X B = C'
-WRITE(1,*)'C->',C
+!WRITE(1,*)'A X B = C'
+!WRITE(1,*)'C->',C
 !WRITE(1,*)'A . B = D'
 !WRITE(1,*)'D->',D
 WRITE(1,*)'A x B = E, prova real'
