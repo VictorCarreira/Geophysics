@@ -58,6 +58,42 @@ SUBROUTINE sphere(xq,yq,zq,a,rho,xp,yp,zp,gx,gy,gy)
    
 END SUBROUTINE
 
+!------------------------------------------------------------------!
+
+SUBROUTINE cylinder (xq,zq,a,rho,xp,zp,gx,gz)
+!This subroutine calculates x and z components of gravitational 
+!attraction due to an infinitely extended cylinder lying parallel
+!to y axis. X and z components of gravitational attraction are 
+!returned. 
+
+!INPUT PARAMETERS:
+! Points of observations is (xp,zp). Axis of cylinder parameters
+!x,z plane at (xq,zq). Radius of cylinder is "a" and density is "rho".
+!Density in Kg/m³. All distance parameters are in km.
+
+!OUTPUTS PARAMETERS:
+! Components of gravitational attraction (gx,gz) in mGal.
+
+    IMPLICIT NONE
+      REAL(KIND=DP), INTENT(IN)::xq,zq,a,rho,xp,zp
+      REAL(KIND=DP), INTENT(OUT)::gx,gz
+      REAL(KIND=DP):: km2m, tmass, rx, rz, r2
+      REAL(KIND=DP), PARAMETER:: gamma, si2mg, pi, km2m
+     !Parameters
+      gamma=6.67E-11
+      si2mg=1.0E5
+      pi=3.14159265
+      km2m=1.0E3
+      
+      r2=rx**2+rz**2
+      IF(r2 .eq. 0.0)PAUSE 'Cylinder: Bad Argument detected!'
+      tmass=pi*(a**2)*rho
+      gx=2.0*gamma*tmass*rx/r2
+      gz=2.0*gamma*tmass*rz/r2
+      gx=gx*si2mg*km2m
+      gz=gz*si2mg*km2m
+
+END SUBROUTINE cylinder
 
 
 
