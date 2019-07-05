@@ -1,4 +1,4 @@
-MODULE Potential
+MODULE potential
 !--------------------------------------------------------------------!
 !This module should contain all main subroutines related to potential!
 !fields based on Blakely(1995)                                       !
@@ -99,4 +99,4 @@ END SUBROUTINE cylinder
 
 
 
-END MODULE Potential
+END MODULE potential
