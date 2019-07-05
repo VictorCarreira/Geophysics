@@ -1,12 +1,19 @@
 Autor/Author: Victor Ribeiro Carreira victorcarreira@on.br or carreiravr@gmail.com
 
-Fortan Basics: Primeira tentativa efetiva de escrever códigos em linguagem Fortran 95.
- Copyright (C) 2017 por Victor Ribeiro Carreira / victorcarreira@on.br
+Fortan: Reúne rotinas e subrotinas úteis para carreira de geofísico na linguagem FORTRAN.95.
+Este repositório é uma reedição bianual com um compêndio de subrotinas em geofísica.
+ Copyright (C) 2019 por Victor Ribeiro Carreira / victorcarreira@on.br
 
 ===================================APRESENTAÇÃO========================================
 
-Fortran Basics tem somente um criador/autor/Author. E utiliza compilador gfortran.
+Fortran tem somente um criador/autor/Author. E utiliza compilador gfortran.
 
-Alguns exercícios podem ser encontrados em https://sites.google.com/site/deoliveiralf/disciplinas/fisica-computacional
-Dicas de compilação em
-http://www.pbx-brasil.com/Pesquisa/Ferramentas/ProgramandoFortran/aula103/aula3.html
+Alguns exercícios podem ser encontrados em: 
+
+-[Física Computacional](https://sites.google.com/site/deoliveiralf/disciplinas/fisica-computacional)
+
+Dicas de compilação em:
+
+-[Fortran Intrinsics](http://www.pbx-brasil.com/Pesquisa/Ferramentas/ProgramandoFortran/aula103/aula3.html)
+
+=================================TABELA COM AS LISTA DE SUBROTINAS=====================
