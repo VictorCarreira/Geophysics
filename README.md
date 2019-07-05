@@ -1,6 +1,6 @@
 Autor/Author: Victor Ribeiro Carreira victorcarreira@on.br or carreiravr@gmail.com
 
-Fortan: Reúne rotinas e subrotinas úteis para carreira de geofísico na linguagem FORTRAN.95.
+Geophysics: Reúne rotinas e subrotinas úteis para carreira de geofísico na linguagem FORTRAN.95.
 Este repositório é uma reedição bianual com um compêndio de subrotinas em geofísica.
  Copyright (C) 2019 por Victor Ribeiro Carreira / victorcarreira@on.br
 
