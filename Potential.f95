@@ -178,5 +178,30 @@ SUBROUTINE dipole(xq,yq,zq,ra,mi,md,m,xp,yp,zp,bx,by,bz)
 END SUBROUTINE dipole
 
 
+!---------------------------------------------------------------------------!
+
+REAL(KIND=DP) FUNCTION schmit(n,m,theta)
+!This function return schmidt normalized Legendre polynomial.
+!Requires function fac. Based on Press et al.(1986)
+
+!INPUT PARAMETERS:
+! Argument of polynomial is "theta", in degrees. Degrees and order of polynomial
+!are "n" and "m", respectively. Parameter and "n" must be greater than zero, and
+!"m" must be greater than or equal to n.
+
+
+   REAL(KIND=DP), INTENT(IN)::n,m,theta
+   REAL(KIND=DP):: 
+   REAL(KIND=DP), PARAMETER::d2rad
+   !Parameters
+   d2rad=0.017453293
+
+
+
+
+
+END FUNCTION schmit
+
+
 
 END MODULE potential
