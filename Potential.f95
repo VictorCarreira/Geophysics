@@ -195,6 +195,9 @@ REAL(KIND=DP) FUNCTION schmit(n,m,theta)
    REAL(KIND=DP), PARAMETER::d2rad
    !Parameters
    d2rad=0.017453293
+   x=COS(theta*d2rad)
+   IF(m.lt.0.or.,.gt.n)PAUSE'Schmit: Bad argument detected!'
+   pmm=1.0
 
 
 
