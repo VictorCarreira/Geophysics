@@ -189,18 +189,46 @@ REAL(KIND=DP) FUNCTION schmit(n,m,theta)
 !are "n" and "m", respectively. Parameter and "n" must be greater than zero, and
 !"m" must be greater than or equal to n.
 
-
-   REAL(KIND=DP), INTENT(IN)::n,m,theta
-   REAL(KIND=DP):: 
+   INTEGER(KIND=SP),INTENT(IN)::m,n
+   INTEGER(KIND=SP)::i
+   REAL(KIND=DP), INTENT(IN)::theta
+   REAL(KIND=DP):: schmit,pmm,pmm1,fact,somx2,x,pnn,xnorm,fac
    REAL(KIND=DP), PARAMETER::d2rad
    !Parameters
    d2rad=0.017453293
    x=COS(theta*d2rad)
+   
    IF(m.lt.0.or.,.gt.n)PAUSE'Schmit: Bad argument detected!'
    pmm=1.0
+   
+   IF(m.gt.0)THEN
+       somx2=SQRT((1.0-x)*(1.0+x))
+       fact=1.0
+         DO 10 i=1,m
+            pmm=-pmm*fact*somx2
+            fact=fact+2.0
+         10 CONTINUE
+    END IF
 
-
-
+    IF(n.eq.m)THEN
+            schmit=pmm
+    ELSE
+            pmmp1=x*(2*m+1)*pmm
+            IF(n.eq.m+1)THEN
+                    schmit=pmmp1
+            ELSE
+                    DO 11 nn=m+2,n
+                    pnn=(x*(2*nn-1)*pmmp1-(nn+m-1)*pmm)/(nn-m)
+                    pmm=pmmp1
+                    pmmp1=pnn
+                    11 CONTINUE
+                    schmit=pnn
+            END IF          
+    END IF
+    IF(m.ne.0)THEN
+            xnorm=SQRT(2*fac(n-m)/fac(n+m))
+            schmit=xnorm*schmit
+    END IF
 
 
 END FUNCTION schmit
