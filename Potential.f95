@@ -8,7 +8,7 @@ IMPLICIT NONE
   PUBLIC
   INTEGER, PARAMETER::SP = SELECTED_INT_KIND(r=4)
   INTEGER, PARAMETER::DP = SELECTED_REAL_KIND(8,10)
-  INTEGER(KIND=SP):: 
+  INTEGER(KIND=SP)::n 
   INTEGER(KIND=SP), ALLOCATABLE, DIMENSION(:)::
   REAL(KIND=DP)::xq,yq,zq,rho,xp,yp,zp,gx,gy,gz,ra
   REAL(KIND=DP)::incl,decl,azim,a,b,c,mi,md,m,bx,by,bz
@@ -189,6 +189,7 @@ REAL(KIND=DP) FUNCTION schmit(n,m,theta)
 !are "n" and "m", respectively. Parameter and "n" must be greater than zero, and
 !"m" must be greater than or equal to n.
 
+IMPLICIT NONE
    INTEGER(KIND=SP),INTENT(IN)::m,n
    INTEGER(KIND=SP)::i
    REAL(KIND=DP), INTENT(IN)::theta
@@ -232,6 +233,110 @@ REAL(KIND=DP) FUNCTION schmit(n,m,theta)
 
 
 END FUNCTION schmit
+
+!--------------------------------------------------------------------------
+
+REAL FUNCTION fac(n)
+!This function calculates the fatorial of n (n!)
+
+IMPLICIT NONE
+INTEGER(KIND=SP),INTENT(IN)::n
+INTEGER(KIND=SP)::fac,fac2
+
+   IF(n.le.0)PAUSE'fac: Bad argument detected'
+   IF(n.eq.0.or.n.eq.1)THEN
+           fac=1
+   ELSE
+           fac=n
+           fac2=fac
+   30      fac2=fac2-1.0
+           fac=fac*fac2
+           IF(fac2.gt.2)GO TO 30
+   END IF
+
+
+
+END FUNCTION fac
+
+
+!--------------------------------------------------------------------------
+
+SUBROUTINE gbox(x0,y0,z0,x1,y1,z1,x2,y2,z2,rho,g)
+!This subroutine computes the vertical attraction of a rectangular prism.
+!Sides of prism are parallel to x,y,z axes, and z axis is vertical down.
+
+!INPUT PARAMETERS:
+!Observation point is (x0,y0,z0). The prism extends from x1 to x2, from
+!y1 to y2, and from z1 to z2 in the x, y, and z directions, respectively.
+!Density of prism is rho. All distance parameters in units of km; rho in units
+!of kg/m³.
+
+!OUTPUT PARAMETERS:
+!Vertical attraction of gravity g, in mGal.
+
+  IMPLICIT NONE
+    REAL(KIND=DP), INTENT(IN)::x0,y0,z0,x1,y1,z1,x2,y2,z2,rho
+    REAL(KIND=DP), INTENT(OUT)::g
+    REAL(KIND=DP),ALLOCATABLE,DIMENSION(:)::isign,x,y,z 
+    REAL(KIND=DP), PARAMETER:: gamma,twopi, si2mg, km2m
+    
+    ALLOCATE(isign(2),x(2),z(2))
+
+    !Parameters
+     isign=-1,1
+     gamma=6.67E-11
+     twopi=6.2831853
+     si2mg=1.0E5
+     km2m=1.0E3
+
+     x(1)=x0-x1
+     y(1)=y0-y1
+     z(1)=z0-z1
+     x(2)=x0-x2
+     y(2)=y0-y2
+     z(2)=z0-z2
+     sum=0.0
+     DO 1 i=1,2
+        DO 1 j=1,2
+          DO 1 k=1,2
+            rijk=SQRT(x(i)**2=y(i)**2+z(i)**2)
+            ijk=isign(i)*isign(j)*isign(k)
+            arg1=atan2((x(i)*y(j)),(z(k)*rijk))
+            IF(arg1.lt.0.0)arg1=arg1+twopi
+            arg2=rijk+y(j)
+            arg3=rijk+x(i)
+
+
+
+END SUBROUTINE gbox
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
