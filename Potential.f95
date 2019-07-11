@@ -305,7 +305,13 @@ SUBROUTINE gbox(x0,y0,z0,x1,y1,z1,x2,y2,z2,rho,g)
             IF(arg1.lt.0.0)arg1=arg1+twopi
             arg2=rijk+y(j)
             arg3=rijk+x(i)
-
+            IF(arg2.le.0.0)PAUSE 'Gbox: Bad field point!'
+            IF(arg3.le.0.0)PAUSE 'Gbox: Bad field point!'
+            arg2=ALOG(arg2)
+            arg3-ALOG(arg3)
+            sum=sum+ijk*(z(k)*arg1-x(i)*arg2-y(j)*arg3)
+            CONTINUE
+     g=rho*gamma*sum*si2mg*km2m
 
 
 END SUBROUTINE gbox
