@@ -275,10 +275,12 @@ SUBROUTINE gbox(x0,y0,z0,x1,y1,z1,x2,y2,z2,rho,g)
 !Vertical attraction of gravity g, in mGal.
 
   IMPLICIT NONE
-    REAL(KIND=DP), INTENT(IN)::x0,y0,z0,x1,y1,z1,x2,y2,z2,rho
-    REAL(KIND=DP), INTENT(OUT)::g
+    INTEGER(KIND=SP)::i,j,k
+    REAL(KIND=DP),INTENT(IN)::x0,y0,z0,x1,y1,z1,x2,y2,z2,rho
+    REAL(KIND=DP),INTENT(OUT)::g
     REAL(KIND=DP),ALLOCATABLE,DIMENSION(:)::isign,x,y,z 
-    REAL(KIND=DP), PARAMETER:: gamma,twopi, si2mg, km2m
+    REAL(KIND=DP),PARAMETER:: gamma,twopi,si2mg,km2m
+    REAL(KIND=DP):: sum,rijk,ijk,arg1,arg2,arg3
     
     ALLOCATE(isign(2),x(2),z(2))
 
@@ -317,9 +319,28 @@ SUBROUTINE gbox(x0,y0,z0,x1,y1,z1,x2,y2,z2,rho,g)
 END SUBROUTINE gbox
 
 
+!--------------------------------------------------------------------
+
+SUBROUTINE gpoly(x0,z0,xcorn,zcorn,ncorn,rho,g)
+!Subroutine GPOLY computes the vertical attraction of a two-dimensional body
+!with polygonal cross section. Axes are right-handed system with y axis parallel
+!to long direction of body and z axis vertical down.
+
+!INPUT PARAMETERS:
+!Obversavtion points is (x0,y0). Arrays xcorn and zcorn (each of length ncorn)
+!contain the coordinate of the polygon corners, arranged in clockwise order when
+!viewed in x axis to right. Density of body is "rho". All distance parameters are
+!in km/m³.
+
+!OUTPUT PARAMETER:
+!"g" is the vertical attraction of gravity in mGal.
+
+   IMPLICIT NONE
+     
+   
 
 
-
+END SUBROUTINE gpoly
 
 
 
